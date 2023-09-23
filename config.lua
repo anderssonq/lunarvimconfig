@@ -1,6 +1,8 @@
+-- Basic Keys
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.colorscheme = "vn-night"
+lvim.builtin.terminal.open_mapping = "<c-t>"
 vim.opt.relativenumber = true
 vim.opt.foldmethod = "manual"
 vim.opt.mouse = "a"
@@ -24,7 +26,7 @@ lvim.keys.normal_mode["<C-H>"] = ":NvimTreeFindFile<CR>"
 lvim.keys.normal_mode["<C-G>"] = ":NvimTreeToggle<CR>"
 lvim.keys.normal_mode["<C-U>"] = ":u<CR>"
 lvim.keys.normal_mode["<C-Y>"] = ":w<CR>"
-lvim.keys.visual_mode["<leader>p"] = '"0p<CR>'
+lvim.keys.visual_mode["<leader> p"] = [["_dP]]
 lvim.keys.normal_mode["<C-D>"] = ":DiffviewOpen<CR>"
 
 -- Plugin Configuration
@@ -71,10 +73,9 @@ lvim.builtin.which_key.mappings["H"] = {
   d = { "<leader>lf <CR>", "Formatting code" },
   e = { "<leader>ls <CR>", "Search by symbol" },
   f = { "<leader>zf <CR>", "Hidden lines" },
-  g = { "<leader>za <CR>", "Show hidde lines" },
-  h = { "<leader>za <CR>", "Show hidde lines" },
-  i = { "<cmd> :set paste <CR>", "Paste mode On" },
-  j = { "<cmd> :set nopaste<CR>", "Paste mode off" },
+  g = { "<leader>za <CR>", "Show hidden lines" },
+  k = { "<cmd> :NullLsInfo<cr>", "NullInfo"},
+  l = { "<leader>sp", "Change theme"},
 }
 
 -- Plugin List
@@ -93,9 +94,6 @@ lvim.plugins = {
   },
   { "embark-theme/vim" },
   { "tiagovla/tokyodark.nvim" },
-  {
-    'rose-pine/neovim',
-  },
   {
     "itchyny/vim-cursorword",
     event = { "BufEnter", "BufNewFile" },
