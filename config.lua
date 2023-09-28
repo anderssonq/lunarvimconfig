@@ -74,8 +74,8 @@ lvim.builtin.which_key.mappings["H"] = {
   e = { "<leader>ls <CR>", "Search by symbol" },
   f = { "<leader>zf <CR>", "Hidden lines" },
   g = { "<leader>za <CR>", "Show hidden lines" },
-  k = { "<cmd> :NullLsInfo<cr>", "NullInfo"},
-  l = { "<leader>sp", "Change theme"},
+  k = { "<cmd> :NullLsInfo<cr>", "NullInfo" },
+  l = { "<leader>sp", "Change theme" },
 }
 
 -- Plugin List
@@ -122,7 +122,7 @@ lvim.plugins = {
     end,
   },
   {
-  "folke/trouble.nvim",
+    "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       -- your configuration comes here
@@ -162,17 +162,36 @@ lvim.plugins = {
     "sindrets/diffview.nvim",
     event = "BufRead",
   },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+        --     Old text                    Command         New text
+--------------------------------------------------------------------------------
+    -- surr*ound_words             ysiw)           (surround_words)
+    -- *make strings               ys$"            "make strings"
+    -- [delete ar*ound me!]        ds]             delete around me!
+    -- remove <b>HTML t*ags</b>    dst             remove HTML tags
+    -- 'change quot*es'            cs'"            "change quotes"
+    -- <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+    -- delete(functi*on calls)     dsf             function calls
+      })
+    end
+  }
 }
 
 -- Null LS Configuration
 local null_ls = require("null-ls")
 null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.completion.spell,
-        null_ls.builtins.formatting.prettier, -- markdown formatting
-        null_ls.builtins.diagnostics.shellcheck, -- shell script diagnostics
-    },
+  sources = {
+    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.completion.spell,
+    null_ls.builtins.formatting.prettier,        -- markdown formatting
+    null_ls.builtins.diagnostics.shellcheck,     -- shell script diagnostics
+  },
 })
 
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -202,4 +221,3 @@ code_actions.setup {
     name = "proselint",
   },
 }
-

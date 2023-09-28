@@ -13,16 +13,26 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +108 ~/Software/Sky/designsystem/src/index.js
-badd +2 ~/Software/Sky/designsystem/src/main.js
-badd +0 ~/Software/Sky/designsystem/vue.config.js
+badd +409 src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.scss
+badd +32 src/scss/_new_variables.scss
+badd +761 src/components/SearchBoxBase/SearchFlight.vue
+badd +16 package.json
+badd +19 changelog.md
+badd +29 src/components/SearchBoxBase/SearchBoxBase.vue
+badd +5 ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
+badd +22 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.stories.js
+badd +0 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss
 argglobal
 %argdel
 $argadd ./
-edit ~/Software/Sky/designsystem/vue.config.js
+edit src/components/SearchBoxBase/SearchBoxBase.vue
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
 wincmd t
@@ -32,14 +42,31 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+wincmd =
 argglobal
-balt ~/Software/Sky/designsystem/src/main.js
-let s:l = 12 - ((11 * winheight(0) + 28) / 57)
+balt ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
+let s:l = 35 - ((27 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 025|
+keepjumps 35
+normal! 010|
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss", ":p")) | buffer ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss | else | edit ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss | endif
+if &buftype ==# 'terminal'
+  silent file ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss
+endif
+balt ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
+let s:l = 24 - ((23 * winheight(0) + 24) / 49)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 24
+normal! 08|
+wincmd w
+2wincmd w
+wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -55,7 +82,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

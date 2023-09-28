@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Software/Option/OptionMicroFrontends
+cd ~/Software/Sky/external-benefits-ms
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,21 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +7 ~/Software/Option/OptionMicroFrontends/src/App.vue
-badd +11 ~/Software/Option/OptionMicroFrontends/src/views/HomeView.vue
-badd +13 package.json
-badd +2 ~/Software/Option/OptionMicroFrontends/src/main.js
+badd +28 src/microservice/user-interface/controllers/external-benefits.controller.ts
+badd +16 ~/Software/Sky/external-benefits-ms/src/microservice/application-core/external-benefits/use-cases/bch/consult-benefits.interactor.ts
+badd +42 ~/Software/Sky/external-benefits-ms/src/microservice/infraestructure/microservice-clients/http/apitravel.client.ts
+badd +34 ~/Software/Sky/external-benefits-ms/src/microservice/application-core/external-benefits/use-cases/bch/dto/consult-benefits.dto.ts
+badd +5 ~/Software/Sky/external-benefits-ms/src/test/data/external-benefits.controller.data.json
+badd +1 src/microservice/application-core/external-benefits/use-cases/index.ts
+badd +3 src/microservice/infraestructure/microservice-clients/http/dto/report-benefits.dto.ts
+badd +28 src/microservice/infraestructure/microservice-clients/http/utils/transform-data/index.ts
 argglobal
 %argdel
 $argadd ./
-edit ~/Software/Option/OptionMicroFrontends/src/views/HomeView.vue
+edit ~/Software/Sky/external-benefits-ms/src/test/data/external-benefits.controller.data.json
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
 wincmd t
@@ -37,33 +37,14 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
-exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
 argglobal
-balt ~/Software/Option/OptionMicroFrontends/src/App.vue
-let s:l = 13 - ((12 * winheight(0) + 22) / 44)
+balt src/microservice/infraestructure/microservice-clients/http/utils/transform-data/index.ts
+let s:l = 5 - ((4 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 13
-normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("~/Software/Option/OptionMicroFrontends/src/App.vue", ":p")) | buffer ~/Software/Option/OptionMicroFrontends/src/App.vue | else | edit ~/Software/Option/OptionMicroFrontends/src/App.vue | endif
-if &buftype ==# 'terminal'
-  silent file ~/Software/Option/OptionMicroFrontends/src/App.vue
-endif
-balt package.json
-let s:l = 7 - ((6 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 7
-normal! 0
-wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
-exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
+keepjumps 5
+normal! 014|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

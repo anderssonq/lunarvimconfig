@@ -13,28 +13,33 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +15 package.json
+badd +14 package.json
 badd +1 index.html
 badd +13 .eslintrc.js
-badd +1 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/button.css
-badd +29 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/Button.vue
-badd +9 src/assets/base.css
-badd +9 ~/Software/Option/OptionMicrofrontendsStoryBook/tailwind.config.js
-badd +1 ~/Software/Option/OptionMicrofrontendsStoryBook/src/main.js
-badd +17 ~/Software/Option/OptionMicrofrontendsStoryBook/src/assets/main.css
-badd +3 ~/Software/Option/OptionMicrofrontendsStoryBook/src/style.css
-badd +6 ~/Software/Option/OptionMicrofrontendsStoryBook/postcss.config.js
-badd +24 ~/Software/Option/OptionMicrofrontendsStoryBook/vite.config.js
+badd +3 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/button.css
+badd +4 ~/Software/Option/OptionMicrofrontendsStoryBook/src/main.js
+badd +1 src/components/button.css
+badd +22 src/App.vue
+badd +4 ~/Software/Option/OptionMicrofrontendsStoryBook/src/index.js
+badd +1 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Card/Card.vue
+badd +1 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue
+badd +1 src/assets/main.scss
+badd +1 \[Command\ Line]
+badd +33 src/components/atoms/Button/Button.vue
+badd +22 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
 argglobal
 %argdel
 $argadd .eslintrc.js
-edit package.json
+edit src/App.vue
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -45,30 +50,47 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 78 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 77 + 117) / 234)
+exe 'vert 3resize ' . ((&columns * 77 + 117) / 234)
 argglobal
-balt ~/Software/Option/OptionMicrofrontendsStoryBook/postcss.config.js
-let s:l = 3 - ((2 * winheight(0) + 21) / 43)
+balt ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue
+let s:l = 22 - ((19 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 3
-normal! 020|
+keepjumps 22
+normal! 055|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/button.css", ":p")) | buffer ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/button.css | else | edit ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/button.css | endif
+if bufexists(fnamemodify("~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue", ":p")) | buffer ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue | else | edit ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue | endif
 if &buftype ==# 'terminal'
-  silent file ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/button.css
+  silent file ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
 endif
-balt ~/Software/Option/OptionMicrofrontendsStoryBook/tailwind.config.js
-let s:l = 20 - ((19 * winheight(0) + 21) / 43)
+balt src/components/atoms/Button/Button.vue
+let s:l = 20 - ((19 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 20
-normal! 033|
+normal! 032|
 wincmd w
-wincmd =
+argglobal
+if bufexists(fnamemodify("~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue", ":p")) | buffer ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue | else | edit ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue | endif
+if &buftype ==# 'terminal'
+  silent file ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue
+endif
+balt ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
+let s:l = 4 - ((3 * winheight(0) + 25) / 51)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 4
+normal! 012|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 78 + 117) / 234)
+exe 'vert 2resize ' . ((&columns * 77 + 117) / 234)
+exe 'vert 3resize ' . ((&columns * 77 + 117) / 234)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

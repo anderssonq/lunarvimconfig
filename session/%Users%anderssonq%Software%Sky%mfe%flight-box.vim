@@ -13,12 +13,17 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +112 src/routes/routes.js
-badd +54 ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue
+badd +17 src/routes/routes.js
+badd +14 ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue
+badd +4 src/views/FlightBox.vue
+badd +1 src/constants/SearchFlight.js
+badd +1 ~/Software/Sky/mfe/flight-box/src/components/organisms/CardStretchSearch.vue
+badd +4 ~/Software/Sky/mfe/flight-box/src/components/organisms/SearchBoxBase.vue
+badd +1 src/components/organisms/tabs/SearchFlight.vue
 argglobal
 %argdel
-$argadd .
-edit src/routes/routes.js
+$argadd ./
+edit src/components/organisms/tabs/SearchFlight.vue
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -35,14 +40,16 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 109 + 109) / 219)
+exe 'vert 2resize ' . ((&columns * 109 + 109) / 219)
 argglobal
-let s:l = 93 - ((26 * winheight(0) + 30) / 61)
+balt ~/Software/Sky/mfe/flight-box/src/components/organisms/SearchBoxBase.vue
+let s:l = 50 - ((30 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 93
-normal! 08|
+keepjumps 50
+normal! 034|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue", ":p")) | buffer ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue | else | edit ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue | endif
@@ -50,14 +57,15 @@ if &buftype ==# 'terminal'
   silent file ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue
 endif
 balt src/routes/routes.js
-let s:l = 52 - ((13 * winheight(0) + 30) / 61)
+let s:l = 14 - ((9 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 52
-normal! 09|
+keepjumps 14
+normal! 010|
 wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 109 + 109) / 219)
+exe 'vert 2resize ' . ((&columns * 109 + 109) / 219)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
