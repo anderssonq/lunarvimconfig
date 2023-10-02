@@ -13,19 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +409 src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.scss
-badd +32 src/scss/_new_variables.scss
-badd +761 src/components/SearchBoxBase/SearchFlight.vue
-badd +16 package.json
-badd +19 changelog.md
-badd +29 src/components/SearchBoxBase/SearchBoxBase.vue
-badd +5 ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
-badd +22 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.stories.js
-badd +0 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss
+badd +14 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.vue
+badd +22 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss
+badd +114 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.stories.js
+badd +1 ~/Software/Sky/designsystem/src/components/icons/IconHotels.vue
+badd +199 ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
+badd +28 changelog.md
+badd +28 src/components/SearchBoxBase/SearchFlight.vue
+badd +0 src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue
 argglobal
 %argdel
-$argadd ./
-edit src/components/SearchBoxBase/SearchBoxBase.vue
+$argadd .
+edit src/components/SearchBoxBase/SearchFlight.vue
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -44,28 +43,27 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-balt ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
-let s:l = 35 - ((27 * winheight(0) + 24) / 49)
+balt ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.vue
+let s:l = 29 - ((28 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 35
-normal! 010|
+keepjumps 29
+normal! 049|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss", ":p")) | buffer ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss | else | edit ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss | endif
+if bufexists(fnamemodify("src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue", ":p")) | buffer src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue | else | edit src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue | endif
 if &buftype ==# 'terminal'
-  silent file ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss
+  silent file src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue
 endif
-balt ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
-let s:l = 24 - ((23 * winheight(0) + 24) / 49)
+balt changelog.md
+let s:l = 37 - ((36 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 24
-normal! 08|
+keepjumps 37
+normal! 022|
 wincmd w
-2wincmd w
 wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

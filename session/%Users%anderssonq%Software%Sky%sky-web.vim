@@ -16,8 +16,8 @@ endif
 badd +123 ~/Software/Sky/sky-web/src/App.vue
 badd +80 ~/Software/Sky/sky-web/src/main.js
 badd +1 ~/Software/Sky/sky-web/src/services/homeMarket.js
-badd +38 src/api/request/flights.js
-badd +0 .env.local
+badd +28 src/api/request/flights.js
+badd +1 .env.local
 argglobal
 %argdel
 $argadd ./
@@ -38,11 +38,11 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 129 + 129) / 258)
-exe 'vert 2resize ' . ((&columns * 128 + 129) / 258)
+exe 'vert 1resize ' . ((&columns * 112 + 112) / 225)
+exe 'vert 2resize ' . ((&columns * 112 + 112) / 225)
 argglobal
 balt ~/Software/Sky/sky-web/src/services/homeMarket.js
-let s:l = 28 - ((24 * winheight(0) + 34) / 68)
+let s:l = 28 - ((23 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -55,15 +55,15 @@ if &buftype ==# 'terminal'
   silent file .env.local
 endif
 balt ~/Software/Sky/sky-web/src/App.vue
-let s:l = 24 - ((23 * winheight(0) + 34) / 69)
+let s:l = 24 - ((22 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 24
 normal! 038|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 129 + 129) / 258)
-exe 'vert 2resize ' . ((&columns * 128 + 129) / 258)
+exe 'vert 1resize ' . ((&columns * 112 + 112) / 225)
+exe 'vert 2resize ' . ((&columns * 112 + 112) / 225)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
