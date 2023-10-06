@@ -14,16 +14,22 @@ else
   set shortmess=aoO
 endif
 badd +17 src/routes/routes.js
-badd +14 ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue
+badd +31 ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue
 badd +4 src/views/FlightBox.vue
 badd +1 src/constants/SearchFlight.js
 badd +1 ~/Software/Sky/mfe/flight-box/src/components/organisms/CardStretchSearch.vue
 badd +4 ~/Software/Sky/mfe/flight-box/src/components/organisms/SearchBoxBase.vue
-badd +1 src/components/organisms/tabs/SearchFlight.vue
+badd +61 src/components/organisms/tabs/SearchFlight.vue
+badd +6 package.json
+badd +25 src/components/molecules/SearchBoxOriginDestination.vue
+badd +637 src/components/organisms/tabs/SearchFlightCardStretch.vue
+badd +23 src/components/atoms/TextField.vue
+badd +15 src/components/molecules/CalendarDate.vue
+badd +55 src/services/airports_routes.js
 argglobal
 %argdel
 $argadd ./
-edit src/components/organisms/tabs/SearchFlight.vue
+edit package.json
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -40,32 +46,30 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 109 + 109) / 219)
-exe 'vert 2resize ' . ((&columns * 109 + 109) / 219)
+wincmd =
 argglobal
-balt ~/Software/Sky/mfe/flight-box/src/components/organisms/SearchBoxBase.vue
-let s:l = 50 - ((30 * winheight(0) + 21) / 43)
+balt src/components/molecules/SearchBoxOriginDestination.vue
+let s:l = 6 - ((5 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 50
-normal! 034|
+keepjumps 6
+normal! 037|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue", ":p")) | buffer ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue | else | edit ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue | endif
+if bufexists(fnamemodify("src/components/organisms/tabs/SearchFlight.vue", ":p")) | buffer src/components/organisms/tabs/SearchFlight.vue | else | edit src/components/organisms/tabs/SearchFlight.vue | endif
 if &buftype ==# 'terminal'
-  silent file ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue
+  silent file src/components/organisms/tabs/SearchFlight.vue
 endif
-balt src/routes/routes.js
-let s:l = 14 - ((9 * winheight(0) + 21) / 43)
+balt package.json
+let s:l = 61 - ((11 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
-normal! 010|
+keepjumps 61
+normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 109 + 109) / 219)
-exe 'vert 2resize ' . ((&columns * 109 + 109) / 219)
+wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

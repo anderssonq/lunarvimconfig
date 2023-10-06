@@ -13,19 +13,22 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 .config/lvim/config.lua
+badd +1 Software/Sky/Utils/BackUpsDB/airports.json
 argglobal
 %argdel
-$argadd .config/lvim/config.lua
-edit .config/lvim/config.lua
+$argadd .
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+tabnext
+edit Software/Sky/Utils/BackUpsDB/airports.json
 argglobal
-let s:l = 6 - ((5 * winheight(0) + 34) / 69)
+let s:l = 1 - ((0 * winheight(0) + 32) / 64)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
-normal! 019|
-tabnext 1
+keepjumps 1
+normal! 0
+tabnext 2
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif

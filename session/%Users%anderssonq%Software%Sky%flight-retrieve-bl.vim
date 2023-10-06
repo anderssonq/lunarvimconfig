@@ -13,13 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +38 ~/Software/Sky/flight-retrieve-bl/src/microservice/app.module.ts
-badd +106 src/test/application-core/flight/helpers/transform-data.spec.ts
-badd +0 ~/Software/Sky/flight-retrieve-bl/.eslintrc.js
+badd +1 ~/Software/Sky/flight-retrieve-bl/Dockerfile
+badd +0 ~/Software/Sky/flight-retrieve-bl/src/microservice/user-interface/controllers/flight.controller.ts
 argglobal
 %argdel
 $argadd .
-edit ~/Software/Sky/flight-retrieve-bl/.eslintrc.js
+edit ~/Software/Sky/flight-retrieve-bl/src/microservice/user-interface/controllers/flight.controller.ts
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -33,13 +32,13 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-balt src/test/application-core/flight/helpers/transform-data.spec.ts
-let s:l = 15 - ((14 * winheight(0) + 22) / 45)
+balt ~/Software/Sky/flight-retrieve-bl/Dockerfile
+let s:l = 59 - ((8 * winheight(0) + 33) / 66)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 15
-normal! 015|
+keepjumps 59
+normal! 020|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -55,6 +54,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

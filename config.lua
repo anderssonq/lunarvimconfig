@@ -25,6 +25,9 @@ lvim.keys.normal_mode["<C-.>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<C-H>"] = ":NvimTreeFindFile<CR>"
 lvim.keys.normal_mode["<C-G>"] = ":NvimTreeToggle<CR>"
 lvim.keys.normal_mode["<C-U>"] = ":u<CR>"
+lvim.keys.normal_mode["<C-b>"] = ":b#|bd#<CR>"
+
+
 lvim.keys.normal_mode["<C-Y>"] = ":w<CR>"
 lvim.keys.visual_mode["<leader> p"] = [["_dP]]
 lvim.keys.normal_mode["<C-D>"] = ":DiffviewOpen<CR>"
@@ -34,6 +37,8 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
+lvim.builtin.nvimtree.setup.view.width = "20%"
+lvim.builtin.nvimtree.setup.renderer.group_empty = true
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- Treesitter Configuration

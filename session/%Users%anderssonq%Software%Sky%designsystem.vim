@@ -13,18 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +14 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.vue
-badd +22 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.scss
-badd +114 ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.stories.js
-badd +1 ~/Software/Sky/designsystem/src/components/icons/IconHotels.vue
-badd +199 ~/Software/Sky/designsystem/src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
-badd +28 changelog.md
-badd +28 src/components/SearchBoxBase/SearchFlight.vue
-badd +0 src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue
+badd +34 src/components/SearchBoxBase/SearchBoxBase.vue
+badd +61 src/components/SearchBoxBase/SearchBoxBase.scss
+badd +114 src/components/SearchBoxBase/SearchBoxBase.stories.js
+badd +1 src/components/icons/IconHotels.vue
+badd +15 src/components/SearchBoxBase/Mockups/CorpoContainerSlot.vue
+badd +31 changelog.md
+badd +28 src/components/Calendar/Calendar.vue
+badd +194 src/components/Calendar/Calendar.scss
+badd +52 node_modules/v-calendar/dist/types/src/components/DatePicker/DatePicker.vue.d.ts
+badd +22 src/components/Calendar/Calendar.stories.js
+badd +47 src/scss/_new_variables.scss
 argglobal
 %argdel
-$argadd .
-edit src/components/SearchBoxBase/SearchFlight.vue
+$argadd ./
+edit src/components/Calendar/Calendar.vue
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -43,27 +46,28 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-balt ~/Software/Sky/designsystem/src/components/SearchBoxBase/SearchBoxBase.vue
-let s:l = 29 - ((28 * winheight(0) + 25) / 51)
+balt src/scss/_new_variables.scss
+let s:l = 26 - ((17 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 29
-normal! 049|
+keepjumps 26
+normal! 039|
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue", ":p")) | buffer src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue | else | edit src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue | endif
+if bufexists(fnamemodify("src/components/Calendar/Calendar.scss", ":p")) | buffer src/components/Calendar/Calendar.scss | else | edit src/components/Calendar/Calendar.scss | endif
 if &buftype ==# 'terminal'
-  silent file src/components/SearchBoxOriginDestination/SearchBoxOriginDestination.vue
+  silent file src/components/Calendar/Calendar.scss
 endif
-balt changelog.md
-let s:l = 37 - ((36 * winheight(0) + 25) / 51)
+balt src/components/Calendar/Calendar.stories.js
+let s:l = 287 - ((29 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 37
-normal! 022|
+keepjumps 287
+normal! 016|
 wincmd w
+2wincmd w
 wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

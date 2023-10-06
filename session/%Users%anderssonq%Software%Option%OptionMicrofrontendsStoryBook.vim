@@ -16,21 +16,27 @@ endif
 badd +14 package.json
 badd +1 index.html
 badd +13 .eslintrc.js
-badd +3 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Button/button.css
-badd +4 ~/Software/Option/OptionMicrofrontendsStoryBook/src/main.js
+badd +3 src/components/atoms/Button/button.css
+badd +4 src/main.js
 badd +1 src/components/button.css
-badd +1 src/App.vue
-badd +4 ~/Software/Option/OptionMicrofrontendsStoryBook/src/index.js
-badd +1 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Card/Card.vue
-badd +1 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue
+badd +35 src/App.vue
+badd +4 src/index.js
+badd +1 src/components/atoms/Card/Card.vue
+badd +6 src/components/atoms/TextField/TextField.vue
 badd +1 src/assets/main.scss
 badd +1 \[Command\ Line]
 badd +33 src/components/atoms/Button/Button.vue
-badd +21 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
+badd +24 src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
+badd +8 src/components/atoms/Select/Select.vue
+badd +13 ~/Software/Sky/mfe/flight-box/src/components/molecules/SearchBoxOriginDestination.vue
+badd +519 ~/Software/Sky/mfe/flight-box/src/components/organisms/tabs/SearchFlight.vue
+badd +78 ~/Software/Sky/mfe/flight-box/src/components/organisms/tabs/SearchFlightCardStretch.vue
+badd +13 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.stories.js
+badd +9 ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Select/Select.stories.js
 argglobal
 %argdel
 $argadd .eslintrc.js
-edit src/App.vue
+edit ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.stories.js
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -50,48 +56,44 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 73 + 110) / 221)
-exe 'vert 2resize ' . ((&columns * 73 + 110) / 221)
-exe 'vert 3resize ' . ((&columns * 73 + 110) / 221)
+wincmd =
 argglobal
-balt ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue
-let s:l = 25 - ((24 * winheight(0) + 25) / 51)
+balt ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/Select/Select.stories.js
+let s:l = 15 - ((14 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 15
+normal! 02|
+wincmd w
+argglobal
+if bufexists(fnamemodify("src/components/atoms/Select/Select.vue", ":p")) | buffer src/components/atoms/Select/Select.vue | else | edit src/components/atoms/Select/Select.vue | endif
+if &buftype ==# 'terminal'
+  silent file src/components/atoms/Select/Select.vue
+endif
+balt ~/Software/Sky/mfe/flight-box/src/components/molecules/SearchBoxOriginDestination.vue
+let s:l = 25 - ((24 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 25
-normal! 08|
+normal! 018|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue", ":p")) | buffer ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue | else | edit ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue | endif
+if bufexists(fnamemodify("src/components/atoms/TextField/TextField.vue", ":p")) | buffer src/components/atoms/TextField/TextField.vue | else | edit src/components/atoms/TextField/TextField.vue | endif
 if &buftype ==# 'terminal'
-  silent file ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
+  silent file src/components/atoms/TextField/TextField.vue
 endif
-balt src/components/atoms/Button/Button.vue
-let s:l = 21 - ((19 * winheight(0) + 25) / 51)
+balt src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
+let s:l = 6 - ((5 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 21
-normal! 04|
-wincmd w
-argglobal
-if bufexists(fnamemodify("~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue", ":p")) | buffer ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue | else | edit ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue | endif
-if &buftype ==# 'terminal'
-  silent file ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/atoms/TextField/TextField.vue
-endif
-balt ~/Software/Option/OptionMicrofrontendsStoryBook/src/components/molecules/TextFieldWithLabel/TextFieldWithLabel.vue
-let s:l = 17 - ((16 * winheight(0) + 25) / 51)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 17
-normal! 06|
+keepjumps 6
+normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 73 + 110) / 221)
-exe 'vert 2resize ' . ((&columns * 73 + 110) / 221)
-exe 'vert 3resize ' . ((&columns * 73 + 110) / 221)
+wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

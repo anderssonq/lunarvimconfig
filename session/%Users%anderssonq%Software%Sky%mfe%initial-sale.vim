@@ -13,19 +13,19 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 src/index.ejs
-badd +31 webpack.config.js
-badd +1 .env.local
-badd +28 package.json
+badd +47 src/index.ejs
+badd +18 webpack.config.js
+badd +21 package.json
 badd +1 ~/.local/state/lvim/lsp.log
 badd +1 .env
 badd +65 .gitignore
-badd +11 .env.qa
+badd +8 .env.qa
 badd +10 src/skyairline-root-config.js
+badd +25 src/microfrontend-layout.html
 argglobal
 %argdel
 $argadd ./
-edit .env.qa
+edit webpack.config.js
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -42,33 +42,31 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 129 + 130) / 260)
-exe 'vert 2resize ' . ((&columns * 130 + 130) / 260)
+exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
+exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
 argglobal
 balt src/index.ejs
-let s:l = 10 - ((9 * winheight(0) + 27) / 54)
+let s:l = 27 - ((15 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 10
-normal! 0
+keepjumps 27
+normal! 025|
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/index.ejs", ":p")) | buffer src/index.ejs | else | edit src/index.ejs | endif
+if bufexists(fnamemodify(".env.qa", ":p")) | buffer .env.qa | else | edit .env.qa | endif
 if &buftype ==# 'terminal'
-  silent file src/index.ejs
+  silent file .env.qa
 endif
-balt webpack.config.js
-let s:l = 85 - ((24 * winheight(0) + 26) / 53)
+let s:l = 7 - ((6 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 85
-normal! 012|
+keepjumps 7
+normal! 010|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 129 + 130) / 260)
-exe 'vert 2resize ' . ((&columns * 130 + 130) / 260)
+exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
+exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
