@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +42 ~/.config/lvim/config.lua
+badd +0 config.lua
 argglobal
 %argdel
-$argadd .
-edit ~/.config/lvim/config.lua
+$argadd config.lua
+edit config.lua
 argglobal
-let s:l = 42 - ((41 * winheight(0) + 33) / 67)
+let s:l = 224 - ((27 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 42
-normal! 059|
+keepjumps 224
+normal! 037|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -13,23 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +17 src/routes/routes.js
-badd +31 ~/Software/Sky/mfe/flight-box/src/views/CardStretch.vue
-badd +4 src/views/FlightBox.vue
-badd +1 src/constants/SearchFlight.js
-badd +1 ~/Software/Sky/mfe/flight-box/src/components/organisms/CardStretchSearch.vue
-badd +4 ~/Software/Sky/mfe/flight-box/src/components/organisms/SearchBoxBase.vue
-badd +61 src/components/organisms/tabs/SearchFlight.vue
-badd +6 package.json
-badd +25 src/components/molecules/SearchBoxOriginDestination.vue
-badd +637 src/components/organisms/tabs/SearchFlightCardStretch.vue
-badd +23 src/components/atoms/TextField.vue
-badd +15 src/components/molecules/CalendarDate.vue
-badd +55 src/services/airports_routes.js
+badd +1 ~/Software/Sky/mfe/flight-box/vue.config.js
+badd +1 ~/Software/Sky/mfe/flight-box/Dockerfile
+badd +5 ~/Software/Sky/mfe/flight-box/.env.local
+badd +1 ~/Software/Sky/mfe/flight-box/.env.production
+badd +1 ~/Software/Sky/mfe/flight-box/.env.stage
+badd +1 ~/Software/Sky/mfe/flight-box/.env.standalone
+badd +6 ~/Software/Sky/mfe/flight-box/package.json
+badd +2 ~/Software/Sky/mfe/flight-box/.env.qa
 argglobal
 %argdel
 $argadd ./
-edit package.json
+edit ~/Software/Sky/mfe/flight-box/vue.config.js
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -48,26 +43,26 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-balt src/components/molecules/SearchBoxOriginDestination.vue
-let s:l = 6 - ((5 * winheight(0) + 33) / 66)
+balt ~/Software/Sky/mfe/flight-box/.env.standalone
+let s:l = 19 - ((18 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 19
+normal! 049|
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/Software/Sky/mfe/flight-box/package.json", ":p")) | buffer ~/Software/Sky/mfe/flight-box/package.json | else | edit ~/Software/Sky/mfe/flight-box/package.json | endif
+if &buftype ==# 'terminal'
+  silent file ~/Software/Sky/mfe/flight-box/package.json
+endif
+balt ~/Software/Sky/mfe/flight-box/.env.local
+let s:l = 6 - ((5 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 6
-normal! 037|
-wincmd w
-argglobal
-if bufexists(fnamemodify("src/components/organisms/tabs/SearchFlight.vue", ":p")) | buffer src/components/organisms/tabs/SearchFlight.vue | else | edit src/components/organisms/tabs/SearchFlight.vue | endif
-if &buftype ==# 'terminal'
-  silent file src/components/organisms/tabs/SearchFlight.vue
-endif
-balt package.json
-let s:l = 61 - ((11 * winheight(0) + 33) / 66)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 61
-normal! 0
+normal! 01|
 wincmd w
 wincmd =
 tabnext 1

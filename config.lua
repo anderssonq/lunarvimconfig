@@ -1,7 +1,8 @@
 -- Basic Keys
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "vn-night"
+-- lvim.colorscheme = "embark"
+-- lvim.colorscheme = "vn-night"
 lvim.builtin.terminal.open_mapping = "<c-t>"
 vim.opt.relativenumber = true
 vim.opt.foldmethod = "manual"
@@ -89,14 +90,21 @@ lvim.plugins = {
   { "marko-cerovac/material.nvim" },
   { "gbprod/nord.nvim" },
   {
-    "navarasu/onedark.nvim",
+    "oxfist/night-owl.nvim",
+    priority = 1000,
     config = function()
-      require("onedark").setup {
-        style = 'deep',
-      }
-      require('onedark').load()
+      lvim.colorscheme = "night-owl"
     end
   },
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   config = function()
+  --     require("onedark").setup {
+  --       style = 'deep',
+  --     }
+  --     require('onedark').load()
+  --   end
+  -- },
   { "embark-theme/vim" },
   { "tiagovla/tokyodark.nvim" },
   {
@@ -188,7 +196,14 @@ lvim.plugins = {
         -- delete(functi*on calls)     dsf             function calls
       })
     end
-  }
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufRead",
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
 }
 
 -- Null LS Configuration
