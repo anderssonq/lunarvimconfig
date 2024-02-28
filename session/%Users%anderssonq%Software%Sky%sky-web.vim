@@ -13,24 +13,56 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/Software/Sky/sky-web/cypress.json
-badd +40 ~/Software/Sky/sky-web/.env.qa
-badd +12 .env.local
-badd +106 src/services/despegar.js
-badd +22 ~/Software/Sky/sky-web/src/services/airports.js
-badd +0 src/api/request/rules-connections.js
+badd +1835 src/components/FlightsList.vue
+badd +153 src/components/ModalFlightStopsInfo.vue
+badd +19 ~/Software/Sky/sky-web/package.json
 argglobal
 %argdel
-$argadd ./
-edit src/api/request/rules-connections.js
+$argadd .
+edit src/components/ModalFlightStopsInfo.vue
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
 argglobal
-balt ~/Software/Sky/sky-web/.env.qa
-let s:l = 15 - ((14 * winheight(0) + 27) / 54)
+balt ~/Software/Sky/sky-web/package.json
+let s:l = 50 - ((20 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 15
-normal! 08|
+keepjumps 50
+normal! 039|
+wincmd w
+argglobal
+if bufexists(fnamemodify("src/components/ModalFlightStopsInfo.vue", ":p")) | buffer src/components/ModalFlightStopsInfo.vue | else | edit src/components/ModalFlightStopsInfo.vue | endif
+if &buftype ==# 'terminal'
+  silent file src/components/ModalFlightStopsInfo.vue
+endif
+balt src/components/FlightsList.vue
+let s:l = 141 - ((16 * winheight(0) + 16) / 33)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 141
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 96 + 97) / 194)
+exe 'vert 2resize ' . ((&columns * 97 + 97) / 194)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -38,13 +70,14 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +37 Software/Learn/snippet.js
+badd +0 Software/Sky/mss/test.json
 argglobal
 %argdel
-$argadd Software/Learn/snippet.js
-edit Software/Learn/snippet.js
+$argadd Software/Sky/mss/test.json
+edit Software/Sky/mss/test.json
 argglobal
-let s:l = 25 - ((24 * winheight(0) + 24) / 48)
+let s:l = 2 - ((1 * winheight(0) + 51) / 102)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 25
-normal! 038|
+keepjumps 2
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

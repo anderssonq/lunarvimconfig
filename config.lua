@@ -18,6 +18,21 @@ vim.opt.linebreak = true
 vim.opt.wrap = true
 
 lvim.leader = "space"
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.g.copilot_filetypes = {
+  ["*"] = false,
+  ["javascript"] = true,
+  ["typescript"] = true,
+  ["lua"] = false,
+  ["rust"] = true,
+  ["c"] = true,
+  ["c#"] = true,
+  ["c++"] = true,
+  ["go"] = true,
+  ["python"] = true,
+}
 
 -- Key Mappings
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
@@ -86,6 +101,7 @@ lvim.builtin.which_key.mappings["H"] = {
 
 -- Plugin List
 lvim.plugins = {
+  { "github/copilot.vim" },
   { "mhartington/oceanic-next" },
   { "marko-cerovac/material.nvim" },
   { "gbprod/nord.nvim" },
@@ -96,15 +112,6 @@ lvim.plugins = {
       lvim.colorscheme = "night-owl"
     end
   },
-  -- {
-  --   "navarasu/onedark.nvim",
-  --   config = function()
-  --     require("onedark").setup {
-  --       style = 'deep',
-  --     }
-  --     require('onedark').load()
-  --   end
-  -- },
   { "embark-theme/vim" },
   { "tiagovla/tokyodark.nvim" },
   {
@@ -164,12 +171,6 @@ lvim.plugins = {
   {
     "folke/lsp-colors.nvim",
     event = "BufRead",
-  },
-  {
-    "tzachar/cmp-tabnine",
-    build = "./install.sh",
-    dependencies = "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
   },
   {
     "sindrets/diffview.nvim",

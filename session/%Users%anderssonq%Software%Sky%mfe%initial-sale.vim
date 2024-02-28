@@ -13,12 +13,15 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/Software/Sky/mfe/initial-sale/src/index.ejs
-badd +2 ~/Software/Sky/mfe/initial-sale/.env.local
+badd +38 ~/Software/Sky/mfe/initial-sale/src/index.ejs
+badd +3 ~/Software/Sky/mfe/initial-sale/.env.qa
+badd +16 ~/Software/Sky/mfe/initial-sale/.env.local
+badd +7 ~/Software/Sky/mfe/initial-sale/importmap-ventas.json
+badd +22 package.json
 argglobal
 %argdel
 $argadd .
-edit ~/Software/Sky/mfe/initial-sale/.env.local
+edit ~/Software/Sky/mfe/initial-sale/.env.qa
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -33,12 +36,12 @@ set winminwidth=0
 set winwidth=1
 argglobal
 balt ~/Software/Sky/mfe/initial-sale/src/index.ejs
-let s:l = 2 - ((1 * winheight(0) + 19) / 38)
+let s:l = 3 - ((2 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 056|
+keepjumps 3
+normal! 097|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

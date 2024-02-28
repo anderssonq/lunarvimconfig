@@ -13,17 +13,16 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/Software/Sky/pricingfares-bl/src/microservice/app.module.ts
-badd +336 src/microservice/application-core/inventory-flights/helpers/transform-data.ts
-badd +17 src/microservice/main.ts
-badd +0 changelog.md
+badd +94 ~/Software/Sky/pricingfares-bl/src/microservice/user-interface/controllers/fares-shop.controller.ts
+badd +1 ~/Software/Sky/pricingfares-bl/src/microservice/main.ts
+badd +0 ~/Software/Sky/pricingfares-bl/src/microservice/app.module.ts
 argglobal
 %argdel
 $argadd .
-edit changelog.md
+edit ~/Software/Sky/pricingfares-bl/src/microservice/app.module.ts
 argglobal
-balt src/microservice/main.ts
-let s:l = 1 - ((0 * winheight(0) + 20) / 41)
+balt ~/Software/Sky/pricingfares-bl/src/microservice/main.ts
+let s:l = 1 - ((0 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -42,6 +41,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

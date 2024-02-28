@@ -13,23 +13,32 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +27 ~/Software/Sky/fare-quote-ms/src/microservice/app.module.ts
-badd +203 ~/Software/Sky/fare-quote-ms/src/microservice/application-core/dto-module/cheapest-fare-by-seg-date-dto/cheapest-fare-by-seg-date-dto.service.ts
-badd +29 ~/Software/Sky/fare-quote-ms/src/microservice/application-core/application-core.module.ts
-badd +4 ~/Software/Sky/fare-quote-ms/src/microservice/user-interface/controllers/fare-shop.controller.ts
-badd +13 ~/Software/Sky/fare-quote-ms/src/microservice/application-core/cheapest-fare-by-seg-date/cheapest-fare-by-seg-date.interactor.ts
+badd +37 ~/Software/Sky/fare-quote-ms/src/microservice/app.module.ts
+badd +1 ~/Software/Sky/fare-quote-ms/src/microservice/main.ts
 argglobal
 %argdel
-$argadd ./
-edit ~/Software/Sky/fare-quote-ms/src/microservice/application-core/application-core.module.ts
+$argadd .
+edit ~/Software/Sky/fare-quote-ms/src/microservice/app.module.ts
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
 argglobal
-balt ~/Software/Sky/fare-quote-ms/src/microservice/application-core/dto-module/cheapest-fare-by-seg-date-dto/cheapest-fare-by-seg-date-dto.service.ts
-let s:l = 12 - ((11 * winheight(0) + 33) / 66)
+balt ~/Software/Sky/fare-quote-ms/src/microservice/main.ts
+let s:l = 37 - ((36 * winheight(0) + 50) / 101)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 0
+keepjumps 37
+normal! 0114|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -37,12 +46,15 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
