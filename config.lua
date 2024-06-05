@@ -1,9 +1,9 @@
 -- Basic Keys
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
+lvim.builtin.terminal.open_mapping = "<c-t>"
 -- lvim.colorscheme = "embark"
 -- lvim.colorscheme = "vn-night"
-lvim.builtin.terminal.open_mapping = "<c-t>"
 vim.opt.relativenumber = true
 vim.opt.foldmethod = "manual"
 vim.opt.mouse = "a"
@@ -11,6 +11,9 @@ vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.sw = 2
 vim.opt.ts = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+vim.o.tabstop = 2
 vim.opt.fileencoding = "utf-8"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -99,9 +102,18 @@ lvim.builtin.which_key.mappings["H"] = {
   l = { "<leader>sp", "Change theme" },
 }
 
+lvim.builtin.which_key.mappings["G"] = {
+  name = "Keyshorts code",
+  a = { "", "surr*ound_words             ysiw)           (surround_words)" },
+  b = { "", "*make strings               ys$''            'make strings'" },
+  c = { "", "[delete ar*ound me!]        ds]             delete around me!" },
+  d = { "", "remove <b>HTML t*ags</b>    dst             remove HTML tags" },
+  e = { "", "'change quot*es'            cs')            (change quotes) "},
+  f = { "", "<b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>"},
+  g = { "", "delete(functi*on calls)     dsf             function calls"},
+}
 -- Plugin List
 lvim.plugins = {
-  { "github/copilot.vim" },
   { "mhartington/oceanic-next" },
   { "marko-cerovac/material.nvim" },
   { "gbprod/nord.nvim" },
@@ -114,6 +126,8 @@ lvim.plugins = {
   },
   { "embark-theme/vim" },
   { "tiagovla/tokyodark.nvim" },
+  { "github/copilot.vim" },
+  { "mg979/vim-visual-multi"},
   {
     "itchyny/vim-cursorword",
     event = { "BufEnter", "BufNewFile" },
@@ -245,3 +259,4 @@ code_actions.setup {
     name = "proselint",
   },
 }
+
